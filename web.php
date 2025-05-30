@@ -19,7 +19,7 @@ Route::get('agendamento', [AgendamentoController::class, 'getagendamento']);
 Route::get('agenda', [AgendaController::class, 'getagenda']);
 
 
-
+Route::get('/mostrarUsuario', [UserController::class, 'mostrarUsuario']);
 
 Route::get('/criarUsuario', [UserController::class, 'criarUsuario']);
 Route::get('/criarServico', [ServicosController::class, 'criarServico']);
@@ -48,3 +48,5 @@ Route::get('acharServico/{id_servico}', [ServicosController::class, 'acharServic
 Route::get('acharGrupo/{id_grupo}', [GruposController::class, 'acharGrupo']);
 Route::get('acharAgendamento/{id_agendamento}', [AgendamentoController::class, 'acharAgendamento']);
 Route::get('acharAgenda/{id_agenda}', [AgendaController::class, 'acharAgenda']);
+
+Route::get('calcularIntervalo', [AgendaController::class, 'calcularIntervalo']);
