@@ -13,6 +13,13 @@ class UserController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+ public function mostrarUsuario(Request $request)
+    {
+
+        $mostrarUsuario = User::all();
+        return response()->json($mostrarUsuario);
+    }
+
     public function criarUsuario(Request $request)
     {
 

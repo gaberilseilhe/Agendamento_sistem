@@ -40,6 +40,23 @@ class AgendaController extends BaseController
         $agenda = Agenda::find($request->id_agenda);
         return response()->json($agenda);
     }
+    public function calculoIntervalo(Request $request){
+        $inicio = strtotime($request -> horario_inicio);
+        $final = strtotime($request -> horario_final);
+        $intervalo = ($final - $inicio) / 60/30;
+
+        for ($i=0; $i<$intervalo; $i++){
+            echo "\n".date("H:i", $inicio);
+            $inicio += 30 * 60;
+        Agenda::create([
+    'hora' => $request -> hora,
+    'id_profissional' => $request -> id_profissional,
+    'dia_da_semana' => $request -> dia_da_semana
+
+]);
+        }
+
+    }
 }
 
 /*
