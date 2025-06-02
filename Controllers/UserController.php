@@ -17,7 +17,9 @@ class UserController extends BaseController
     {
 
         $mostrarUsuario = User::all();
-        return response()->json($mostrarUsuario);
+        return response()->json([
+            'usuarios' => $mostrarUsuario
+        ]);
     }
 
     public function criarUsuario(Request $request)
@@ -59,4 +61,3 @@ class UserController extends BaseController
 /*
 https://localhost/Agendamento_sistem/create-usuario?nome_usuario=gabe&id_grupo=1&data_nascimento=2004-12-12
   */
-

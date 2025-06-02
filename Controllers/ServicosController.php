@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class ServicosController extends BaseController
 {
+
+    public function mostrarServicos(Request $request)
+    {
+        $mostrarServicos = Servicos::all();
+        return response()->json([
+            'servicos' => $mostrarServicos
+        ]);
+        return response()->json($mostrarServicos);
+    }
     public function criarServico(Request $request)
     {
         $servicoCriado = Servicos::create([

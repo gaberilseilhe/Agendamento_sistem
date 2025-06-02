@@ -41,36 +41,34 @@ class AgendaController extends BaseController
         return response()->json($agenda);
     }
     public function calculoIntervalo(Request $request)
-    {
-        $inicio = strtotime($request->horario_inicio);
-        $final = strtotime($request->horario_final);
-        $intervalo = ($final - $inicio)/60/30;
-        if($intervalo < 0)
-            exit('horário fim deve ser maior do horário início');
+{
+    
+    $inicio = strtotime($request->horario_inicio);
+    $final = strtotime($request->horario_final);
 
-        // echo "<pre>";
-        // print_r([
-        //     '$request->horario_inicio' => $request->horario_inicio,
-        //     '$request->horario_final' => $request->horario_final,
-        //     'intervalo' => $intervalo
-        // ]);
-        // exit();
-            
-        $agendas = [];
-        for ($i = 0; $i < $intervalo; $i++) {
-            echo "\n" . date("H:i", $inicio);
-            $inicio += 30 * 60;
-            $agendas[] = Agenda::create([
-                'horario' => date("H:i", $inicio),
-                'id_usuario' => $request->id_usuario,
-                'dia_da_semana' => $request->dia_da_semana
+    $intervalo = ($final - $inicio) / 60 / 30;
 
-            ]);
+    if ($intervalo < 0)
+        exit('horário fim deve ser maior do horário início');
 
-        }
-        return response()->json($agendas);
+    $agendas = [];
 
+    for ($i = 0; $i < $intervalo; $i++) {
+
+        echo "\n" . date("H:i", $inicio);
+
+        $inicio += 30 * 60;
+        $agendas[] = Agenda::create([
+            'horario' => date("H:i", $inicio),
+            'id_usuario' => $request->id_usuario,
+            'dia_da_semana' => $request->dia_da_semana
+        ]);
     }
+
+    // Retorna os registros criados em formato JSON
+    return response()->json($agendas);
+}
+
 }
 
 /*
