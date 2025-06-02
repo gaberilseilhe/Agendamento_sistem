@@ -8,18 +8,9 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\GruposController;
 
 
-Route::get('usuarios', [UserController::class, 'getusuarios']);
-
-Route::get('servicos', [ServicosController::class, 'getservicos']);
-
-Route::get('grupos', [GruposController::class, 'getgrupos']);
-
-Route::get('agendamento', [AgendamentoController::class, 'getagendamento']);
-
-Route::get('agenda', [AgendaController::class, 'getagenda']);
-
-
 Route::get('/mostrarUsuario', [UserController::class, 'mostrarUsuario']);
+Route::get('/mostrarServicos', [ServicosController::class, 'mostrarServicos']);
+
 
 Route::get('/criarUsuario', [UserController::class, 'criarUsuario']);
 Route::get('/criarServico', [ServicosController::class, 'criarServico']);
@@ -50,3 +41,5 @@ Route::get('acharAgendamento/{id_agendamento}', [AgendamentoController::class, '
 Route::get('acharAgenda/{id_agenda}', [AgendaController::class, 'acharAgenda']);
 
 Route::get('calcularIntervalo', [AgendaController::class, 'calcularIntervalo']);
+
+Route::get('prepararAgendamento',[AgendamentoController::class, 'prepararAgendamento']);
