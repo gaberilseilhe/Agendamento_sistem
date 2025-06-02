@@ -40,6 +40,16 @@ class AgendamentoController extends BaseController
         $agendamento = Agendamento::find($request->id_agendamento);
         return response()->json($agendamento);
     }
+
+    public function prepararAgendamento(Request $request){
+        $dia_da_semana = data('w', strototime($request -> data));
+
+        $horariosLivres = Agenda::
+        where('dia_da_semana', $dia_da_semana)
+        ->whereDoenstHave('agendamentos')
+        ->with('usuarios')
+        ->get();
+    }
 }
 /*
 https://localhost/Agendamento_sistem/create-agendamento?id_usuario=1&id_servico=1&id_agenda=1&data=1200-12-23
